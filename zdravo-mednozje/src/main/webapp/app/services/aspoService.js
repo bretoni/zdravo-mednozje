@@ -4,7 +4,7 @@
 	angular.module("ASPO").factory("AspoService", ["$http", "$q", 
 	function ($http, $q) {
 	    var that = this;
-	    var baseUrl = "rest/testRest/questions";
+	    var baseUrl = "api/questions.json";
 		
 		function getQuestions() {
 	        var req = $http.get(baseUrl);

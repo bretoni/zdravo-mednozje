@@ -7,14 +7,14 @@
 		that.answered = [{questionId: 0, answerId: 0}];
 		that.questions = {}; // database of all questions
 		$scope.displayedQuestions = []; // Questions in fringe, that were or will be displayed
-		that.displayNr = 0; // Index of current questions in carousel
+		$scope.displayNr = 0; // Index of current questions in carousel
 		
 		// Mark current answer as inactive and set
 		// next questions as active.
 		function changeQuestion(direction) {
-			$scope.displayedQuestions[that.displayNr].active = false;
-			that.displayNr += direction;
-			$scope.displayedQuestions[that.displayNr].active = true;
+			$scope.displayedQuestions[$scope.displayNr].active = false;
+			$scope.displayNr += direction;
+			$scope.displayedQuestions[$scope.displayNr].active = true;
 		}
 		
 		
@@ -53,17 +53,60 @@
 		}
 		
 		$scope.back = function() {
-			if(that.displayNr <= 0)
+			if($scope.displayNr <= 0)
 				return;
 		
 			changeQuestion(-1);
+		}
+		
+		$scope.diagnosis = -1;
+		
+		function end()
+		{
+			var colors = [0, 0, 0, 0, 0];
+			
+			for(var i = 0; i < $scope.displayedQuestions.length; i++) {
+				var q = $scope.displayedQuestions[i];
+				
+				for(var j = 0; j < q.answers.length; j++)
+				{					
+					if(!q.answers[i])
+						continue;
+					
+					colors[q.answers[i].flag]++;
+					break;
+				}
+			}
+			
+			// 0 = no colour
+			// 1 = green
+			// 2 = yellow
+			// 3 = red
+			// 4 = purple
+			// ! Purple danger is less then red.
+			if(colors[4] >= 3 || colors[3])
+				$scope.diagnosis = 3;
+			else if(colors[4] >= 1 || colors[2] > 0)
+				$scope.diagnosis = 2;
+			else
+				$scope.diagnosis = 1;
+			
+			switch($scope.diagnosis)
+			{
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+			}
 		}
 		
 		$scope.next = function() {		
 			// Save all asnwers from current question
 			if($scope.displayedQuestions.length > 0)
 			{
-				var q = $scope.displayedQuestions[that.displayNr];
+				var q = $scope.displayedQuestions[$scope.displayNr];
 				
 				// Go through every possible answers, check if it's answered
 				// and save it to answerd array
@@ -86,7 +129,7 @@
 			
 			// No more questions left to display
 			// TODO: Wrong condition due to made changes, fix
-			if($scope.displayedQuestions.length == 0)
+			if($scope.displayedQuestions.length == $scope.displayNr+1)
 				end();
 			else // Otherwise sort questions and display
 				$scope.displayedQuestions.sort(function (a, b) {
@@ -94,7 +137,7 @@
 				});
 				
 			// Move to next question
-			if(that.displayNr < $scope.displayedQuestions.length-1)
+			if($scope.displayNr < $scope.displayedQuestions.length-1)
 				changeQuestion(+1);
 		}
 		
@@ -117,7 +160,7 @@
 			// Mark first one as active and save all
 			// questions in controller property variable.
 			questions[0].active = true;
-			that.displayNr = 0;
+			$scope.displayNr = 0;
 			that.questions = questions;
 			
 			// Find and display first questions
