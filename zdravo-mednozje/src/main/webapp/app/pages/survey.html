@@ -9,18 +9,26 @@
 			{{displayNr+1}}. {{q.text}}
 			</div>
 			
-			<ul id="ulSurvey">
-				<li ng-repeat="ans in q.answers">
+			<ul id="ulSurvey" ng-switch on="q.type">
+				<li ng-repeat="ans in q.answers" ng-switch-when="2">
 					<input 
-					type="{{ q.type == 2 ? 'checkbox' : 'radio'}}"
-					name="ansForQ{{ans.id}}"
+					name="ans{{q.id}}"
+					type="checkbox"
 					ng-model="ans.selected"
 					ng-value="true">
 					{{ ans.answerText }}
 				</li>
+				<li ng-repeat="ans in q.answers" ng-switch-when="1">
+					<input 
+					name="ans{{q.id}}"
+					type="radio"
+					ng-model="q.answerNr"
+					ng-value="ans.answerID">
+					{{ ans.answerText }}
+				</li>
 			</ul>
 			
-			<!--<button ng-click="back()">Nazaj</button>-->
+			<button ng-click="back()" ng-show="displayNr > 0">Nazaj</button>
 			<button class="btn btn-primary" id="button" ng-click="next()">Naprej</button>
 		  </slide>
 		</carousel>

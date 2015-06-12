@@ -12,7 +12,9 @@
 		// Mark current answer as inactive and set
 		// next questions as active.
 		function changeQuestion(direction) {
-			$scope.displayedQuestions[$scope.displayNr].active = false;
+			if( $scope.displayNr < $scope.displayedQuestions.length  )
+				$scope.displayedQuestions[$scope.displayNr].active = false;
+			
 			$scope.displayNr += direction;
 			$scope.displayedQuestions[$scope.displayNr].active = true;
 		}
@@ -20,7 +22,8 @@
 		
 		// Go through conditions if question display conditions
 		// were satisfied. 
-		function canDisplay(question) {
+		function canDisplay(question) 
+		{
 			
 			var matchedDependecies = 0;
 			
@@ -52,10 +55,29 @@
 			return question.dependencies.length <= matchedDependecies;
 		}
 		
-		$scope.back = function() {
+		that.addedQuestions = [];
+		$scope.back = function() 
+		{
 			if($scope.displayNr <= 0)
 				return;
-		
+			
+			for(var i = 0; i < that.addedQuestions[that.addedQuestions.length -1].questions; i++)
+			{
+				/*
+				var q = $scope.displayedQuestions[$scope.displayedQuestions.length-1];
+				for(var j = 0; j < q.answers.length; j++)
+					q.answers[j].selected = false;
+				*/
+				
+				that.questions.push($scope.displayedQuestions[$scope.displayedQuestions.length-1]);
+				$scope.displayedQuestions.pop();
+			}
+			
+			for(var i = 0; i < that.addedQuestions[that.addedQuestions.length -1].answers; i++)
+				that.answered.pop();
+			
+			that.addedQuestions.pop();
+			
 			changeQuestion(-1);
 		}
 		
@@ -102,33 +124,55 @@
 			}
 		}
 		
-		$scope.next = function() {		
+		$scope.next = function() 
+		{		
 			// Save all asnwers from current question
+			that.addedQuestions.push({ questions: 0, answers: 0 });
 			if($scope.displayedQuestions.length > 0)
 			{
 				var q = $scope.displayedQuestions[$scope.displayNr];
 				
+				// Remove all questions for current question to prevent duplicates.
+				for(var i = 0; i < that.answered.length; i++)
+					if(that.answered[i].questionId == q.id)
+						that.answered.splice(i--, 1);
+				
 				// Go through every possible answers, check if it's answered
 				// and save it to answerd array
-				for(var i = 0; i < q.answers.length; i++)
-					if(q.answers[i].selected)
-						that.answered.push({
-							questionId: q.id,
-							answerId: q.answers[i].answerID
-						});
+				if(q.type == 2)
+				{
+					for(var i = 0; i < q.answers.length; i++)
+						if(q.answers[i].selected) 
+						{
+							that.answered.push({
+								questionId: q.id,
+								answerId: q.answers[i].answerID
+							});
+							that.addedQuestions[that.addedQuestions.length-1].answers++;
+						}
+				}
+				else 
+				{
+					that.answered.push({
+						questionId: q.id,
+						answerId: q.answerNr
+					});
+					that.addedQuestions[that.addedQuestions.length-1].answers++;
+				}
 			}
 			
 			// Find all questions that should be displayed afterwards
 			// Delete it from all questions
 			for(var i = 0; i < that.questions.length; i++) {
-				if(canDisplay(that.questions[i])) {
+				if(canDisplay(that.questions[i])) 
+				{
 					$scope.displayedQuestions.push(that.questions[i]);
 					that.questions.splice(i--, 1);
+					that.addedQuestions[that.addedQuestions.length-1].questions++;
 				}
 			}
 			
 			// No more questions left to display
-			// TODO: Wrong condition due to made changes, fix
 			if($scope.displayedQuestions.length == $scope.displayNr+1)
 				end();
 			else // Otherwise sort questions and display
@@ -147,6 +191,7 @@
 			// Required for Bootstrap UI Carousel
 			for(var i = 0; i < questions.length; i++) {
 				questions[i].active = false;
+				questions[i].answerNr = -1;
 				
 				for(var j = 0; j < questions[i].answers.length; j++)
 					questions[i].answers[j].selected = false;
