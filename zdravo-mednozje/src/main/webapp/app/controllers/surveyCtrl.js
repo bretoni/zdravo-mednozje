@@ -8,6 +8,7 @@
 		that.questions = {}; // database of all questions
 		$scope.displayedQuestions = []; // Questions in fringe, that were or will be displayed
 		$scope.displayNr = 0; // Index of current questions in carousel
+		$scope.allowForward = false;
 		
 		// Mark current answer as inactive and set
 		// next questions as active.
@@ -17,6 +18,20 @@
 			
 			$scope.displayNr += direction;
 			$scope.displayedQuestions[$scope.displayNr].active = true;
+			
+			// Enable forward button if answer is already provided
+			$scope.allowForward = false;
+			$scope.change();
+		}
+		
+		// On each input change, check if user can click next button
+		$scope.change = function(){
+			var q = $scope.displayedQuestions[$scope.displayNr];
+			
+			if(q.type == 1 && q.answerNr != -1)
+				$scope.allowForward = true;
+			else if(q.type == 2)
+				$scope.allowForward = true;
 		}
 		
 		
@@ -61,23 +76,21 @@
 			if($scope.displayNr <= 0)
 				return;
 			
+			// Delete number of questions added because of last questio and answer
 			for(var i = 0; i < that.addedQuestions[that.addedQuestions.length -1].questions; i++)
-			{
-				/*
-				var q = $scope.displayedQuestions[$scope.displayedQuestions.length-1];
-				for(var j = 0; j < q.answers.length; j++)
-					q.answers[j].selected = false;
-				*/
-				
+			{				
 				that.questions.push($scope.displayedQuestions[$scope.displayedQuestions.length-1]);
 				$scope.displayedQuestions.pop();
 			}
 			
+			// Also remove all answers user answered
 			for(var i = 0; i < that.addedQuestions[that.addedQuestions.length -1].answers; i++)
 				that.answered.pop();
 			
+			// Remove last item history for changes it brought
 			that.addedQuestions.pop();
 			
+			// Bacward one question
 			changeQuestion(-1);
 		}
 		
@@ -87,15 +100,20 @@
 		{
 			var colors = [0, 0, 0, 0, 0];
 			
+			// Count answer colours user provided.
 			for(var i = 0; i < $scope.displayedQuestions.length; i++) {
 				var q = $scope.displayedQuestions[i];
+
+				// By current design checkboxes can be ignored
+				if(q.type == 2)
+					continue;
 				
 				for(var j = 0; j < q.answers.length; j++)
-				{					
-					if(!q.answers[i])
+				{			
+					if(q.answers[j].answerID != q.answerNr)
 						continue;
 					
-					colors[q.answers[i].flag]++;
+					colors[q.answers[j].flag]++;
 					break;
 				}
 			}
@@ -106,6 +124,8 @@
 			// 3 = red
 			// 4 = purple
 			// ! Purple danger is less then red.
+			
+			// Decide which warning to show
 			if(colors[4] >= 3 || colors[3])
 				$scope.diagnosis = 3;
 			else if(colors[4] >= 1 || colors[2] > 0)
@@ -126,7 +146,9 @@
 		
 		$scope.next = function() 
 		{		
-			// Save all asnwers from current question
+			// Save all answers from current question
+			// Also track how many questions were newly added
+			// for back button functionality
 			that.addedQuestions.push({ questions: 0, answers: 0 });
 			if($scope.displayedQuestions.length > 0)
 			{
@@ -137,7 +159,7 @@
 					if(that.answered[i].questionId == q.id)
 						that.answered.splice(i--, 1);
 				
-				// Go through every possible answers, check if it's answered
+				// Go through every possible answer of type CHECKBOX), check if it's answered
 				// and save it to answerd array
 				if(q.type == 2)
 				{
@@ -151,7 +173,10 @@
 							that.addedQuestions[that.addedQuestions.length-1].answers++;
 						}
 				}
-				else 
+				// Handle RADIO type inputs
+				// Because radio button shoul all be bound to one variable,
+				// they are connected to one in question object no per answer as check boxes are.
+				else if(q.type == 1)
 				{
 					that.answered.push({
 						questionId: q.id,

@@ -22,6 +22,7 @@
 					<input 
 					name="ans{{q.id}}"
 					type="radio"
+					ng-change="change()"
 					ng-model="q.answerNr"
 					ng-value="ans.answerID">
 					{{ ans.answerText }}
@@ -29,7 +30,7 @@
 			</ul>
 			
 			<button ng-click="back()" ng-show="displayNr > 0">Nazaj</button>
-			<button class="btn btn-primary" id="button" ng-click="next()">Naprej</button>
+			<button class="btn btn-primary" id="button" ng-click="next()" ng-disabled="!allowForward">Naprej</button>
 		  </slide>
 		</carousel>
 	</div>
