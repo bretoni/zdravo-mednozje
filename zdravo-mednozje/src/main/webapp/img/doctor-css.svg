@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
-
+<?xml-stylesheet type="text/css" href="svg-stylesheet.css" ?>
 <svg
    xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
    xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -17,45 +17,6 @@
    inkscape:version="0.91 r13725"
    viewBox="0 0 64 64"
    sodipodi:docname="doctor.svg">
-   <style type="text/css" >
-      <![CDATA[
-   .doctor_color {
-      fill:#000000;
-      stroke:#000000;
-   }   
-   .semitransparent {
-      fill-opacity:0.42;
-      fill-rule:nonzero;
-   }
-   .opaque {
-      fill-opacity:1;
-      fill-rule:nonzero;
-   }
-   .thinstroke {
-      stroke-width:0.46;
-      stroke-opacity:1;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      stroke-dasharray:none;
-      stroke-miterlimit:4;
-   }
-   .normalstroke {
-      stroke: #000000;
-      stroke-width:0.6;
-      stroke-opacity:1;
-      stroke-linecap:round;
-      stroke-linejoin:round;
-      stroke-dasharray:none;
-      stroke-miterlimit:4;
-   }
-   .emptypath {
-      fill:none;
-      fill-rule:evenodd;
-   }
- 
-     ]]>
-    </style>
-
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -139,7 +100,7 @@
        cy="46.581493"
        r="1.015552" />
     <path
-       class="doctor_color normalstroke semitransparent"
+       class="doctor_overlay_color normalstroke opaque"
        d="m 27.335724,3.0865933 c 1.090909,-1.3181818 8.691538,-1.3181818 9.50972,0 l 1.707572,6.5321428 -12.834992,0 z"
        id="rect5808"
        inkscape:connector-curvature="0"
