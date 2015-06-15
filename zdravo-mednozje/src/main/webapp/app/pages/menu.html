@@ -7,7 +7,7 @@
 	<div class="col-md-offset-4 col-md-4" >
 		<div class="col-md-4" ng-repeat="menu in main.menuItems">
 			<a class="main-circle" href="{{menu.link}}" ng-click="main.navigate()">
-				<div class="main-text text-center">{{menu.text}}</div>
+				<div class="main-text text-center">{{menu.text}}><img src="/img/{{menu.icon}}"/></div>
 			</a>
 		</div>
 	</div>

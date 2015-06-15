@@ -8,32 +8,32 @@
 			{
 				text: 'Vprašalnik',
 				link: '#/survey',
-				icon: 'questions.svg',
+				icon: 'questions-css.svg',
 			},
 			{
 				text: 'Opis spolno prenosljivih okužb',
 				link: '#/std-info',
-				icon: 'virus.svg',
+				icon: 'virus-css.svg',
 			},
 			{
 				text: 'Simptomi',
 				link: '#/symptoms',
-				icon: 'doctor.svg',
+				icon: 'doctor-css.svg',
 			},
 			{
 				text: 'Pregled pri zdravniku',
 				link: '#/medical-examination',
-				icon: 'doctor.svg',
+				icon: 'doctor-css.svg',
 			},
 			{
 				text: 'Zaščita',
 				link: '#/protection',
-				icon: 'safety.svg',
+				icon: 'safety-css.svg',
 			},
 			{
 				text: 'O nas',
 				link: '#/about-us',
-				icon: 'group.svg',
+				icon: 'group-css.svg',
 			},
 		]
 		
