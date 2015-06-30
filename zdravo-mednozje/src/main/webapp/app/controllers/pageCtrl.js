@@ -7,32 +7,85 @@
 		that.menuItems = [
 			{
 				text: 'Vprašalnik',
-				link: '#/survey',
+				link: '#/vprasalnik/uvod',
 				icon: 'questions-css.svg',
 			},
 			{
 				text: 'Opis spolno prenosljivih okužb',
-				link: '#/std-info',
+				link: '#/o-spolno-prenosljivih-okuzbah',
 				icon: 'virus-css.svg',
+				subpages: [
+					{
+						name: 'Splošno o SPO',
+						link: '',
+					},
+					{
+						name: 'Gonoreja',
+						link: 'gonoreja',
+					},
+					{
+						name: 'Genitalni herpes',
+						link: 'genitalni-herpes',
+					},
+					{
+						name: 'Genitalne bradavice',
+						link: 'genitalne-bradavice',
+					},
+					{
+						name: 'Okužba s klamidijo',
+						link: 'okuzba-s-klamidijo',
+					},
+					{
+						name: 'Sifilis',
+						link: 'sifilis',
+					},
+					{
+						name: 'Trihomonoza',
+						link: 'trihomonoza',
+					},
+					{
+						name: 'Okužba z urogenitalnimi mikoplazmami',
+						link: 'okuzba-z-urogenitalnimi-mikoplazmami',
+					},
+					{
+						name: 'Hepatitis B',
+						link: 'hepatitis-b',
+					},
+					{
+						name: 'Hepatitis C',
+						link: 'hepatitis-c',
+					},
+					{
+						name: 'HIV/AIDS',
+						link: 'hiv-aids',
+					}],
 			},
 			{
 				text: 'Simptomi',
-				link: '#/symptoms',
+				link: '#/simptoni',
 				icon: 'doctor-css.svg',
+				subpages: [{
+					name: 'Izcedek',
+					link: 'izcedek',
+				},
+				{
+					name: 'Razjeda',
+					link: 'razjeda',
+				}]
 			},
 			{
 				text: 'Pregled pri zdravniku',
-				link: '#/medical-examination',
+				link: '#/pregled-pri-zdravniku',
 				icon: 'doctor-css.svg',
 			},
 			{
 				text: 'Zaščita',
-				link: '#/protection',
+				link: '#/zascita',
 				icon: 'safety-css.svg',
 			},
 			{
 				text: 'O nas',
-				link: '#/about-us',
+				link: '#/o-nas',
 				icon: 'group-css.svg',
 			},
 		]

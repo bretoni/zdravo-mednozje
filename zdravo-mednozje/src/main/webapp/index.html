@@ -1,46 +1,62 @@
+<!DOCTYPE html>
 <html lang="en" ng-app="ASPO">
 	<head>
 	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	  <link rel="icon" type="image/x-icon" href="favicon.ico?v1.0" />
 	  
-	  <title>ASPO</title>
+	  <title>ASPO - Spletna aplikacija za prepoznavanje in informiranje o spolno prenosljivih okužbah </title>
 
 	  <!-- CSS  -->
-	  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-	  <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300&subset=latin,latin-ext' rel='stylesheet' type='text/css' />
+	  <link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	  <link href="css/perfect-scrollbar.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
 	  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 	</head>
-
+	
 	<body ng-controller="PageCtrl as main">
-		<header>
-			<div class="container-fluid">
-				<div ng-include="'app/pages/menu.html'"></div>
-			</div>
-		</header>
-		
-        <!-- MAIN CONTENT AND INJECTED VIEWS -->
-		<div class="container-fluid init-hidden ng-hide" ng-show="main.show" >
-			<div id="main-view">
-				<div id="main-view-close" ng-click="main.close()"><img id="close" src="img/cd-icon-close.svg"></div>
-				<article>
-					<div ng-view></div>
-				</article>
-			</div>
+		<div id="wrap">
+			<!-- <perfect-scrollbar id="main-scroll" wheel-propagation="true" wheel-speed="50"> -->
+				<header>
+					<div ng-include="'app/pages/menu.html'"></div>
+				</header>
+							
+				<div class="container-fluid" id="main">
+					<div class="row">
+						<div ng-view class="view-animate"></div>
+					</div>
+				</div>
+			<!-- </perfect-scrollbar> -->
 		</div>
+		
+		<div class="back-to-top"></div>
+		
+		<footer>
+			<div ng-include="'app/pages/footer.html'"></div>
+		</footer>
 		
 		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="js/angular.min.js"></script>
+		<script src="js/angular-animate.min.js"></script>
+		<script src="js/angular-sanitize.min.js"></script>
+		<script src="js/marked.min.js"></script>
 		<script src="js/angular-route.min.js"></script>
+		<script src="js/angular-markdown.js"></script>
+		<script src="js/perfect-scrollbar.with-mousewheel.min.js"></script>
+		<script src="js/perfect-scrollbar.with-mousewheel.min.js"></script>
 		<script src="js/ui-bootstrap.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular-perfect-scrollbar.js" ></script>
 		<script src="js/script.js"></script>
-		
 		
 		<!-- Angular App JS -->
 		<script src="app/app.js"></script>
 		<script src="app/controllers/surveyCtrl.js"></script>
 		<script src="app/controllers/blankCtrl.js"></script>
+		<script src="app/controllers/symptomsCtrl.js"></script>
+		<script src="app/controllers/stdInfoCtrl.js"></script>
 		<script src="app/controllers/pageCtrl.js"></script>
 		<script src="app/services/aspoService.js"></script>
+	
 	</body>
 </html>

@@ -1,0 +1,7 @@
+﻿Spletna aplikacija za prepoznavanje in informiranje o spolno prenosljivih okužbah je nastala v okviru razpisa Javnega sklada z naslovom Po kreativni poti do praktičnega znanja, katerega cilj je vzpodbujanje povezovanja študentov in fakultet z gospodarstvom. 
+
+Pri razvoju aplikacije smo sodelovali študentje Medicinske fakultete, Fakultete za računalništvo in informatiko ter Ekonomske fakultete pod mentorstvom prof. dr. Mojce Matičič, dr. med. s Klinike za infekcijske bolezni in vročinska stanja, prof. dr. Matjaža Gamsa in dr. Mitje Luštreka z Inštituta Jožef Štefan, dr. Gašperja Fele-Žorža s Fakultete za računalništvo in informatiko ter Aleša Čurića iz računalniškega podjetja Net servis. 
+
+Kot cilj projekta smo si zastavili razvoj prve interaktivne spletne aplikacije v slovenskem jeziku na temo informiranja in prepoznavanja spolno prenosljivih okužb, ki smo jo namenili predvsem najbolj ranljivi populaciji - mladim.
+
+>*»Projekt delno financira Evropska unija iz Evropskega socialnega sklada. Projekt se izvaja v okviru Operativnega programa razvoja človeških virov za obdobje 2007-2013, 1. razvojne prioritete » Spodbujanje podjetništva in prilagodljivosti« ter prednostne usmeritve 1.3: »Štipendijske sheme«, v okviru potrjene operacije » Po kreativni poti do praktičnega znanja«.*

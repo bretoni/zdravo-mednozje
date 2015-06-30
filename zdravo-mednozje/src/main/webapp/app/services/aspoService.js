@@ -4,18 +4,22 @@
 	angular.module("ASPO").factory("AspoService", ["$http", "$q", 
 	function ($http, $q) {
 	    var that = this;
-	    var baseUrl = "api/questions.json";
+	    var baseUrl = "api/";
 		
 		function getQuestions() {
-	        var req = $http.get(baseUrl);
+	        var req = $http.get(baseUrl + "questions.json");
 
 	        return req.then(_handleSuccess, _handleError);
 	    }
+		
+		function sendData(answeredQuestions) {
+			$http.post(baseUrl + "senData", answeredQuestions);
+		}
 
 	    // Return API
 	    return ({
 	        getQuestions: getQuestions,
-			//sendData: sendData
+			sendData: sendData
 	    });
 
 	    // Private Methods

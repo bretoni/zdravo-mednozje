@@ -1,50 +1,50 @@
-<div class="col-md-8 col-md-offset-2 modalWin">
-	<p class="title" style="color: #b1dde9;">Vprašalnik</p>
-	<div class="panel col-md-6 col-md-offset-3" style="padding: 20px;" ng-show="diagnosis == -1">
-		<carousel interval="-1" id="survey-questions">
-		  <slide 
-				ng-repeat="q in displayedQuestions"
-				active="q.active">
-			<div id="titleSurvey">
-			{{displayNr+1}}. {{q.text}}
+<div id="page-survey">
+    <h2 class="container">Vprašalnik</h2>
+
+    <div class="content-block">
+        <div class="container"> 
+			<div class="col-md-offset-3 col-md-6">
+						
+				<carousel interval="-1" id="survey-questions" ng-show="diagnosis == -1" class="carousel-fade">
+					<slide ng-repeat="q in displayedQuestions" active="q.active" class="question-page">
+						<h3 class="survey-question">
+							{{displayNr+1}}. {{q.text}}
+							<div ng-if="q.type == 2" class="question-info">Možnih je več izbir.</div>
+						</h3>
+						
+
+						<ul id="ulSurvey" ng-switch on="q.type">
+							<li ng-repeat="ans in q.answers" ng-switch-when="2">
+								<input name="ans{{q.id}}" type="checkbox" ng-model="ans.selected" ng-value="true"> {{ ans.answerText }}
+							</li>
+							<li ng-repeat="ans in q.answers" ng-switch-when="1">
+								<input name="ans{{q.id}}" type="radio" ng-change="change()" ng-model="q.answerNr" ng-value="ans.answerID"> {{ ans.answerText }}
+							</li>
+						</ul>
+
+						<div class="buttons">
+							<button class="btn btn-primary" ng-click="back()" ng-show="displayNr > 0">Nazaj</button>
+							<button class="btn btn-primary" id="button" ng-click="next()" ng-disabled="!allowForward">Naprej</button>
+						</div>
+					</slide>
+				</carousel>
+
+				<div ng-show="diagnosis >= 0" class="alert" ng-class="diagnosis == 1 ? 'alert-success' : diagnosis == 2 ? 'alert-warning' : 'alert-danger'">
+					<span ng-switch on="diagnosis">
+						<span ng-switch-when="1">
+							Imate majhno tveganje za SPO, v kolikor ste zaskrbljeni se lahko obrnete na osebnega zdravnika in se preventivno testirate.
+						</span>
+						
+						<span ng-switch-when="2">
+							Obstaja povečano tveganje za SPO, priporočamo vam odgovorno vedenje (predvsem uporabo kondoma) in preventivna testiranja. Za več informacij se lahko obrnete na osebnega zdravnika.
+						</span>
+						
+						<span ng-switch-when="3">
+							Obstaja zelo velika verjetnost, da imate SPO, zato bodite odgovorni in se izognite spolnim odnosom (tudi oralnim), dokler ne boste prepričani, da nimate SPO. Čim prej se obrnite na osebnega zdravnika, ki vas bo usmeril k ustreznemu specialistu.
+						</span>
+					</span>
+				</div>
 			</div>
-			
-			<ul id="ulSurvey" ng-switch on="q.type">
-				<li ng-repeat="ans in q.answers" ng-switch-when="2">
-					<input 
-					name="ans{{q.id}}"
-					type="checkbox"
-					ng-model="ans.selected"
-					ng-value="true">
-					{{ ans.answerText }}
-				</li>
-				<li ng-repeat="ans in q.answers" ng-switch-when="1">
-					<input 
-					name="ans{{q.id}}"
-					type="radio"
-					ng-change="change()"
-					ng-model="q.answerNr"
-					ng-value="ans.answerID">
-					{{ ans.answerText }}
-				</li>
-			</ul>
-			
-			<button ng-click="back()" ng-show="displayNr > 0">Nazaj</button>
-			<button class="btn btn-primary" id="button" ng-click="next()" ng-disabled="!allowForward">Naprej</button>
-		  </slide>
-		</carousel>
-	</div>
-	<div ng-show="diagnosis >= 0" class="alert" ng-class="diagnosis == 1 ? 'alert-success' : diagnosis == 2 ? 'alert-warning' : 'alert-danger'">
-		<span ng-switch on="diagnosis">
-			<span ng-switch-when="1">
-				Imate majhno tveganje za SPO, v kolikor ste zaskrbljeni se lahko obrnete na osebnega zdravnika in se preventivno testirate.
-			</span>
-			<span ng-switch-when="2">
-				Obstaja povečano tveganje za SPO, priporočamo vam odgovorno vedenje (predvsem uporabo kondoma) in preventivna testiranja. Za več informacij se lahko obrnete na osebnega zdravnika.
-			</span>
-			<span ng-switch-when="3">
-				Obstaja zelo velika verjetnost, da imate SPO, zato bodite odgovorni in se izognite spolnim odnosom (tudi oralnim), dokler ne boste prepričani, da nimate SPO. Čim prej se obrnite na osebnega zdravnika, ki vas bo usmeril k ustreznemu specialistu.
-			</span>
-		</span>
-	</div>
+        </div>
+    </div>
 </div>

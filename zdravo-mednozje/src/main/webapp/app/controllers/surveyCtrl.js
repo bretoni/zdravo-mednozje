@@ -13,8 +13,10 @@
 		// Mark current answer as inactive and set
 		// next questions as active.
 		function changeQuestion(direction) {
-			if( $scope.displayNr < $scope.displayedQuestions.length  )
-				$scope.displayedQuestions[$scope.displayNr].active = false;
+			for(var i = 0; i < $scope.displayedQuestions.length; i++)
+				$scope.displayedQuestions[i].active = false;
+			
+			$scope.$apply();
 			
 			$scope.displayNr += direction;
 			$scope.displayedQuestions[$scope.displayNr].active = true;
@@ -97,8 +99,13 @@
 		$scope.diagnosis = -1;
 		
 		function end()
-		{
-			var colors = [0, 0, 0, 0, 0];
+		{	
+			that.answered.shift();		
+			aspoService.sendData(that.answered);
+			
+			var colors = new Array(32);
+			for(var i = 0; i < colors.length; i++)
+				colors[i] = 0;
 			
 			// Count answer colours user provided.
 			for(var i = 0; i < $scope.displayedQuestions.length; i++) {
@@ -113,7 +120,11 @@
 					if(q.answers[j].answerID != q.answerNr)
 						continue;
 					
-					colors[q.answers[j].flag]++;
+					var bin = (q.answers[j].flag >>> 0).toString(2);
+					
+					for(var k = colors.length-1; k > colors.length - bin.length; k--)
+						colors[k] += 1*bin[colors.length-k-1]; // 1* lazy cast from char to int
+					
 					break;
 				}
 			}
@@ -121,14 +132,14 @@
 			// 0 = no colour
 			// 1 = green
 			// 2 = yellow
-			// 3 = red
-			// 4 = purple
-			// ! Purple danger is less then red.
+			// 4 = red
+			// 8 = purple
+			// 2^n flags...
 			
 			// Decide which warning to show
-			if(colors[4] >= 3 || colors[3])
+			if(colors[3] >= 3 || colors[2])
 				$scope.diagnosis = 3;
-			else if(colors[4] >= 1 || colors[2] > 0)
+			else if(colors[3] >= 1 || colors[1] > 0)
 				$scope.diagnosis = 2;
 			else
 				$scope.diagnosis = 1;
