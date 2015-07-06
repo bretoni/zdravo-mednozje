@@ -405,6 +405,7 @@ footer img {
  */
 
 #page-survey .question-page {
+	min-height: 425px;
 }
 
 .button-next a {

@@ -7,7 +7,7 @@
 		that.answered = [{questionId: 0, answerId: 0}];
 		that.questions = {}; // database of all questions
 		$scope.displayedQuestions = []; // Questions in fringe, that were or will be displayed
-		$scope.displayNr = 0; // Index of current questions in carousel
+		$scope.displayNr = -1; // Index of current questions in carousel
 		$scope.allowForward = false;
 		
 		// Mark current answer as inactive and set
@@ -55,10 +55,13 @@
 				else
 					// Go through all answered questions
 					for(var j = 0; j < that.answered.length; j++) {
-						// Match question dependeny to already answered questions
+						// Match question dependency to already answered questions
 						// Skip if not found
-						if(that.answered[j].questionId !== dep.previusQuestionID)
+						if(that.answered[j].questionId*1 !== Math.abs(dep.previusQuestionID))
 							continue;
+						
+						if(dep.previusQuestionID < 0 && that.answered[j].answerId == dep.answerID)
+							return true;
 							
 						// if matched and answerID == 0, match any as in question ID
 						// also match in specific question dependecy matches
@@ -122,8 +125,8 @@
 					
 					var bin = (q.answers[j].flag >>> 0).toString(2);
 					
-					for(var k = colors.length-1; k > colors.length - bin.length; k--)
-						colors[k] += 1*bin[colors.length-k-1]; // 1* lazy cast from char to int
+					for(var k = 0; k < bin.length; k++)
+						colors[colors.length-k-1] += 1*bin[bin.length-k-1]; // 1* lazy cast from char to int
 					
 					break;
 				}
@@ -137,9 +140,9 @@
 			// 2^n flags...
 			
 			// Decide which warning to show
-			if(colors[3] >= 3 || colors[2])
+			if(colors[colors.length-1-3] >= 3 || colors[colors.length-1-2])
 				$scope.diagnosis = 3;
-			else if(colors[3] >= 1 || colors[1] > 0)
+			else if(colors[colors.length-1-3] >= 1 || colors[colors.length-1-1] > 0)
 				$scope.diagnosis = 2;
 			else
 				$scope.diagnosis = 1;
@@ -197,22 +200,29 @@
 				}
 			}
 			
+			that.questions.sort(function (a, b) {
+					return a.sequence -  b.sequence;
+				});
+			
 			// Find all questions that should be displayed afterwards
 			// Delete it from all questions
+			var added = false;
 			for(var i = 0; i < that.questions.length; i++) {
 				if(canDisplay(that.questions[i])) 
 				{
+					added = true;
 					$scope.displayedQuestions.push(that.questions[i]);
 					that.questions.splice(i--, 1);
 					that.addedQuestions[that.addedQuestions.length-1].questions++;
+					break;
 				}
 			}
 			
 			// No more questions left to display
-			if($scope.displayedQuestions.length == $scope.displayNr+1)
+			if(!added)
 				end();
-			else // Otherwise sort questions and display
-				$scope.displayedQuestions.sort(function (a, b) {
+			// Otherwise sort questions and display
+			else $scope.displayedQuestions.sort(function (a, b) {
 					return a.sequence -  b.sequence;
 				});
 				
@@ -246,7 +256,6 @@
 			
 			// Find and display first questions
 			$scope.next();
-			changeQuestion(-1);
 		});
 	}]);
 })();

@@ -7,13 +7,13 @@
 	    var baseUrl = "api/";
 		
 		function getQuestions() {
-	        var req = $http.get(baseUrl + "questions.json");
+	        var req = $http.get(baseUrl + "questions.php");
 
 	        return req.then(_handleSuccess, _handleError);
 	    }
 		
 		function sendData(answeredQuestions) {
-			$http.post(baseUrl + "senData", answeredQuestions);
+			$http.post(baseUrl + "send-data.php", answeredQuestions);
 		}
 
 	    // Return API
@@ -34,19 +34,5 @@
 	    function _handleSuccess(response) {
 	        return response.data;
 	    }
-	}]).directive('embedSrc', function () {
-            return {
-                restrict: 'A',
-                link: function (scope, element, attrs) {
-                    var current = element;
-                    scope.$watch(function() { return attrs.embedSrc; }, function () {
-                        var clone = element
-                          .clone()
-                          .attr('src', attrs.embedSrc);
-                        current.replaceWith(clone);
-                        current = clone;
-                    });
-                }
-            };
-        });
+	}]);
 })();
