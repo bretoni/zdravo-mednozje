@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.ManyToOne;
 import javax.persistence.Query;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -19,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import si.zdravomednozje.model.Answer;
+import si.zdravomednozje.model.AnsweredQuestion;
 import si.zdravomednozje.model.Dependency;
 import si.zdravomednozje.model.Question;
 import si.zdravomednozje.util.Resource;
@@ -28,8 +31,7 @@ import si.zdravomednozje.util.Resource;
 public class TestRestService {
 	@Inject EntityManager entityManager;
 
-	@GET		
-	//@Produces("application/json")
+	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("randomNumber")
 	
@@ -46,8 +48,9 @@ public class TestRestService {
 			return f.getAnnotation(ManyToOne.class) != null;
 		}
 	}
+	
 	@GET		
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON +"; charset=UTF-8")
 	@Path("questions")
 	public Response getQuestionsFromDatabase(){
 		entityManager = Resource.getEntityManager();
@@ -62,6 +65,48 @@ public class TestRestService {
 		entityManager.close();
 		return Response.ok(response).build();
 	}
+	
+	// TODO: need to fix Consumes! IT must only receive JSON, but for some reason it doesn't work
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("*/*")
+	@Path("answers")
+	public Response saveAnswers(String jsonString){
+		GsonBuilder gsonBuilder = new GsonBuilder();
+		Gson gson = gsonBuilder.create();
+		
+		AnsweredQuestion[] answeredQuestions = gson.fromJson(jsonString, AnsweredQuestion[].class);
+		
+		String returnCode = "200";
+		entityManager = Resource.getEntityManager();
+
+		// Save to database
+		try {
+			entityManager.getTransaction().begin();
+			
+			// TODO: this needs to be optimized 
+			for (AnsweredQuestion answeredQuestion : answeredQuestions) {
+				entityManager.persist(answeredQuestion);
+				entityManager.flush();
+				entityManager.refresh(answeredQuestion);
+			}
+			
+			entityManager.getTransaction().commit();
+			entityManager.close();
+			returnCode = "OK";
+		} catch (Exception err) {
+			err.printStackTrace();
+			returnCode = "{\"status\":\"500\","+
+					"\"message\":\"Resource not created.\""+
+					"\"developerMessage\":\""+err.getMessage()+"\""+
+					"}";
+			return  Response.status(500).entity(returnCode).build(); 
+		}
+		
+		return  Response.status(201).entity(returnCode).build(); 
+	}
+	
+	 
 /*	public String toJSONString(List<Question> questions){
 		for (int i = 0; i < questions.size(); i++) {
 			Question question = questions.get(i);

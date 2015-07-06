@@ -9,11 +9,11 @@
 	<persistence-unit name="persistenceUnit1" transaction-type="RESOURCE_LOCAL">
 	
 	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/jdbc/test1</jta-data-source>
+		<jta-data-source>java:/mysqlJaka</jta-data-source>
 		<class>si.zdravomednozje.model.Question</class>
 		<class>si.zdravomednozje.model.Answer</class>
 		<class>si.zdravomednozje.model.Dependency</class>
-		
+		<class>si.zdravomednozje.model.AnsweredQuestion</class>
 		<properties>
 <!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
