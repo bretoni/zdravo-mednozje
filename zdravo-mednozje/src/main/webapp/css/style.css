@@ -22,6 +22,10 @@ body {
 	overflow-x: hidden;
 }
 
+label {
+	cursor: pointer;
+}
+
 a:hover, a:active, a:focus, a {
 	text-decoration: none;
 	color: auto;
@@ -405,7 +409,7 @@ footer img {
  */
 
 #page-survey .question-page {
-	min-height: 425px;
+	min-height: 435px;
 }
 
 .button-next a {

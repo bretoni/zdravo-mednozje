@@ -41,6 +41,8 @@
 		// were satisfied. 
 		function canDisplay(question) 
 		{
+			if(question.dependencies.length == 0)
+				return false;
 			
 			var matchedDependecies = 0;
 			
@@ -132,17 +134,19 @@
 				}
 			}
 			
-			// 0 = no colour
-			// 1 = green
-			// 2 = yellow
+			// BIG ENDIAN Sorting, starts from behind
+			// 0 = no colour 	index: last (colors.length-1)
+			// 1 = green		index: last-1
+			// 2 = yellow 		index: ...
 			// 4 = red
 			// 8 = purple
 			// 2^n flags...
 			
+			var last = colors.length-1;
 			// Decide which warning to show
-			if(colors[colors.length-1-3] >= 3 || colors[colors.length-1-2])
+			if(colors[last-3] >= 3 || colors[last-2])
 				$scope.diagnosis = 3;
-			else if(colors[colors.length-1-3] >= 1 || colors[colors.length-1-1] > 0)
+			else if(colors[last-3] >= 1 || colors[last-2] >= 4)
 				$scope.diagnosis = 2;
 			else
 				$scope.diagnosis = 1;
@@ -167,6 +171,7 @@
 			if($scope.displayedQuestions.length > 0)
 			{
 				var q = $scope.displayedQuestions[$scope.displayNr];
+				q.time = new Date();
 				
 				// Remove all questions for current question to prevent duplicates.
 				for(var i = 0; i < that.answered.length; i++)

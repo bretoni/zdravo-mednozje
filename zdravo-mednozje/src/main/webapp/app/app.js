@@ -31,7 +31,7 @@
 				templateUrl : 'app/pages/std-info.html',
 				controller  : 'StdInfoCtrl'
 			})
-			.when('/simptoni/:view?', {
+			.when('/bolezenski-znaki-in-simptoni/:view?', {
 				templateUrl : 'app/pages/symptoms.html',
 				controller  : 'SymptomsCtrl'
 			})
@@ -42,6 +42,10 @@
 			.when('/zascita', {
 				templateUrl : 'app/pages/protection.html',
 				controller  : 'BlankCtrl'
+			})
+			.when('/primeri/:view?', {
+				templateUrl : 'app/pages/examples.html',
+				controller  : 'ExamplesCtrl'
 			})
 			.when('/o-nas', {
 				templateUrl : 'app/pages/about.html',

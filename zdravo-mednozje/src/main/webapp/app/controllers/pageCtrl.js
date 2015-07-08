@@ -61,8 +61,8 @@
 					}],
 			},
 			{
-				text: 'Simptomi',
-				link: '#/simptoni',
+				text: 'Bolezenski simptomi in znaki',
+				link: '#/bolezenski-znaki-in-simptoni',
 				icon: 'doctor-css.svg',
 				subpages: [{
 					name: 'Izcedek',
@@ -84,7 +84,11 @@
 				icon: 'safety-css.svg',
 			},
 			{
-				text: 'O nas',
+				text: 'Primeri',
+				link: '#/primeri',
+			},
+			{
+				text: 'O ASPO',
 				link: '#/o-nas',
 				icon: 'group-css.svg',
 			},
