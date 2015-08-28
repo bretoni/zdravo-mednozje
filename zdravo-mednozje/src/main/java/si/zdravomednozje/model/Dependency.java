@@ -12,13 +12,13 @@ import javax.persistence.Table;
 public class Dependency {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	@ManyToOne
-	private Question question;
 	private long previusQuestionID;
 	private long answerID;
 	
+	@ManyToOne
+	private Question question;
 	
 	public long getPreviusQuestionID() {
 		return previusQuestionID;

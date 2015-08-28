@@ -1,5 +1,7 @@
 package si.zdravomednozje.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,8 @@ public class AnsweredQuestion {
 	
 	private long questionId;
 	private long answerId;
+	
+	private Date datetime;
 
 	public long getId() {
 		return id;
@@ -42,6 +46,13 @@ public class AnsweredQuestion {
 	public void setAnswerId(long answerId) {
 		this.answerId = answerId;
 	}
-	
+
+	public Date getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
 	
 }

@@ -16,10 +16,10 @@ public class Resource {
 		return entityManager;
 	}
 	
-	@Produces
-	public static EntityManagerFactory buildEntityManagerFactory()
-	{
-		return Persistence.createEntityManagerFactory("persistenceUnit1");
-	}
+//	@Produces
+//	public static EntityManagerFactory buildEntityManagerFactory()
+//	{
+//		return Persistence.createEntityManagerFactory("persistenceUnit1");
+//	}
 	
 }
