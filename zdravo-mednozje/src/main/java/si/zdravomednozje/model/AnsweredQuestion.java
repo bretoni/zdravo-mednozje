@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="AnsweredQuestions")
+@Table(name="answered_questions")
 public class AnsweredQuestion {
 	
 	@Id

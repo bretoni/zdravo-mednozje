@@ -7,7 +7,7 @@
 	    
 	    //var baseUrl = "api/"; https://aspo.mf.uni-lj.si/rest/testRest/questions
 	    //var baseUrl = "http://localhost:8080/zdravo-mednozje/rest/testRest/";
-	    var baseUrl = "https://aspo.mf.uni-lj.si/zdravo-mednozje/rest/testRest/";
+	    var baseUrl = "https://aspo.mf.uni-lj.si/rest/testRest/";
 
 		
 		function getQuestions() {
