@@ -9,11 +9,15 @@
 	<persistence-unit name="persistenceUnit1" transaction-type="RESOURCE_LOCAL">
 	
 	    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<jta-data-source>java:/mysqlJaka</jta-data-source>
+<!-- 		<jta-data-source>java:/mysqlJaka</jta-data-source> -->
+		<jta-data-source>java:/streznikFRI</jta-data-source>
+<!-- 		<jta-data-source>java:/test2</jta-data-source> -->
 		<class>si.zdravomednozje.model.Question</class>
 		<class>si.zdravomednozje.model.Answer</class>
 		<class>si.zdravomednozje.model.Dependency</class>
 		<class>si.zdravomednozje.model.AnsweredQuestion</class>
+		
+		 
 		<properties>
 <!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" /> -->
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
