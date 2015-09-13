@@ -3,7 +3,6 @@ main-color: #f68f15
 main-color-hover: #
 */
 
-
 html {	
 	background: url("../img/bg-img.jpg") no-repeat center center fixed; 
 	-webkit-background-size: cover;
@@ -370,11 +369,12 @@ footer img {
 		display: block;
 		border-radius: 2px;
 		transition-duration: 0.2s;
+		padding: 15px;
 	}
 	
 	#home .button:hover {
 		background: #F68F15;
-		padding: 5px;
+		padding: 20px;
 		transition-duration: 0.2s;
 	}
 	
@@ -382,13 +382,12 @@ footer img {
 		margin: 15px;
 		width: auto;
 		color: #fff;
-		padding: 15px;
+		padding: 20px;
 		font-size: 2em;
-		line-height: 3em;
 		letter-spacing: 0.75px;
 	}
 	
-	@media screen and (max-width: 500px) {
+	@media screen and (max-width: 680px) {
 		#home h1 {
 			padding-top: 10%;
 			font-size: 3em;
@@ -399,11 +398,16 @@ footer img {
 		}
 	
 		#home .button a {
-			font-size: 1.5em;
-			line-height: 2.5em;
+			margin: 0;
+			padding: 0;
+			font-size: 1.6em;
+		}
+		
+		#home .button-border-box {
+			margin-bottom: 70px;
 		}
 	}
-
+	
 /*
  *  PAGE SPECIFICS
  */
@@ -487,7 +491,7 @@ a.list-group-item {
 		color: #000;
 				
 		padding: 50px 0;
-		background: rgba(255, 255, 255, 0.8);
+		background: rgba(255, 255, 255, 0.9);
 		transition: background 0s;
 		
 		margin-bottom: 100px;
@@ -506,6 +510,79 @@ a.list-group-item {
 		margin-top: 8px; 
 		margin-bottom: 40px;
 		font-size: 18px;
+	}
+	
+	.condoms > img {
+		height: 100%;
+		width: 100%;
+		border-radius: 3px;
+		border: 1px solid #dddddd;
+	}
+	
+	#illustration {
+		font-size: 10px;
+		float: right;
+	}
+	
+	@media screen and (max-width: 1000px) {
+		.condoms {
+			text-align: center;
+		}
+		
+		.condoms > img {
+			height: 50%;
+			width: 50%;
+			border-radius: 3px;
+			border: 1px solid #dddddd;
+			margin-bottom: 30px;
+		}
+		
+		#illustration {
+			font-size: 10px;
+			float: none;
+			text-align: center;
+			margin-bottom: 0;
+		}
+	}
+	
+	.featherlight-content {
+		border-radius: 3px;
+	}
+	
+	.featherlight-inner > img {
+		border-radius: 3px;
+		border: 1px solid #dddddd;
+	}
+	
+	.featherlight-inner > p {
+		color: #000;
+		margin-top: 15px;
+		text-align: center;
+		margin-bottom: 0;
+	}
+	
+	#show-image {
+		text-align: center;
+	}
+	
+	#warning-title {
+		color: #000;
+		font-size: 24px;
+		text-align: center;
+		line-height: 130%;
+		font-weight: bold;
+		display: block;
+	}
+	
+	#display-warning {
+		color: #000;
+		font-size: 18px;
+		text-align: justify;
+		line-height: 130%;
+	}
+	
+	#middle {
+		text-align: center;
 	}
 	
 	/* Accordion Heading */
@@ -566,9 +643,10 @@ a.list-group-item {
 		margin-left: 0px;
 	}
 	
-	#ulSurvey > li > input{
-		vertical-align: middle;
-		margin-top: 1.5px;
+	.ng-binding > input {
+		display: inline-block;
+		float: left;
+		margin-top: 7px;
 	}
 	
 	.survey-question {
@@ -641,4 +719,12 @@ a.list-group-item {
 	margin-top: 20px;
 	color: #999;
 	font-size: 16px;
+}
+
+.lightbox-img {
+	color: #2196f3
+}
+
+.lightbox-img:hover {
+	cursor: pointer;
 }

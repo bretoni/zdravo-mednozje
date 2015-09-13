@@ -62,6 +62,7 @@
 						if(that.answered[j].questionId*1 !== Math.abs(dep.previusQuestionID))
 							continue;
 						
+						// If number is negative use OR
 						if(dep.previusQuestionID < 0 && that.answered[j].answerId == dep.answerID)
 							return true;
 							
@@ -146,7 +147,7 @@
 			// Decide which warning to show
 			if(colors[last-3] >= 3 || colors[last-2])
 				$scope.diagnosis = 3;
-			else if(colors[last-3] >= 1 || colors[last-2] >= 4)
+			else if(colors[last-3] >= 1 || colors[last-1] >= 4)
 				$scope.diagnosis = 2;
 			else
 				$scope.diagnosis = 1;

@@ -20,15 +20,7 @@
                 </div>
 
                 <div class="col-sm-8 col-md-9">
-                    <div ng-switch on="file">
-                        <div ng-switch-default>
-                            <div marked ng-include="urlFile"></div>
-                        </div>
-						
-						<div ng-switch-when="">
-                            <div marked ng-include="'app/pages/examples/examples.md'">
-						</div>
-                    </div>
+					<div marked ng-include="urlFile"></div>
                 </div>
             </div>
         </div>

@@ -56,13 +56,13 @@
 						link: 'hepatitis-c',
 					},
 					{
-						name: 'HIV/AIDS',
+						name: 'HIV/aids',
 						link: 'hiv-aids',
 					}],
 			},
 			{
-				text: 'Bolezenski simptomi in znaki',
-				link: '#/bolezenski-znaki-in-simptoni',
+				text: 'Bolezenski znaki',
+				link: '#/bolezenski-znaki',
 				icon: 'doctor-css.svg',
 				subpages: [{
 					name: 'Izcedek',

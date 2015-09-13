@@ -5,15 +5,13 @@
         "ngRoute",
 		"ngAnimate",
         "ui.bootstrap",
-		"perfect_scrollbar",
 		"ngSanitize",
-		"hc.marked",
     ]);
 
     app.constant("_", window._);
 	
-	app.config(["$routeProvider", "markedProvider",
-		function($routeProvider, markedProvider) {
+	app.config(["$routeProvider",
+		function($routeProvider) {
 		$routeProvider
 			.when('/', {
 				templateUrl : 'app/pages/home.html',
@@ -31,7 +29,7 @@
 				templateUrl : 'app/pages/std-info.html',
 				controller  : 'StdInfoCtrl'
 			})
-			.when('/bolezenski-znaki-in-simptoni/:view?', {
+			.when('/bolezenski-znaki/:view?', {
 				templateUrl : 'app/pages/symptoms.html',
 				controller  : 'SymptomsCtrl'
 			})
@@ -52,22 +50,5 @@
 				controller  : 'BlankCtrl'
 			})
 			.otherwise({ redirectTo: '/' });
-			
-		markedProvider.setOptions({
-			gfm: true,
-			tables: true,
-			breaks: true,
-			pedantic: false,
-			sanitize: true,
-			smartLists: true,
-			smartypants: false
-		});
 	}]);
-	
-	/*
-	app.run(function($rootScope, $templateCache) {
-	   $rootScope.$on('$viewContentLoaded', function() {
-		  $templateCache.removeAll();
-	})});
-	*/
 })();

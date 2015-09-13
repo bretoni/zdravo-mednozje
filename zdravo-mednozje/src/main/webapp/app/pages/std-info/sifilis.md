@@ -17,6 +17,8 @@ Sifilis poteka v 4 stadijih.
 
 4. **Terciarni sifilis**:  Nastopi po obdobju poznega nezdravljenega brezsimptomnega latentnega sifilisa z nastankom uničujočih sprememb na koži, razporejenih v obliki kač (tuberji) in tako imenovanih gum (granulomov), prisotnih v različnih organih (osrednje živčevje, srčno-žilni sistem).
 
+<lightbox-img img="'./media/sifilis-razjeda.jpg'" text="'Primer razjede pri sifilisu.'">Kako izgledajo razjede pri sifilisu?</lightbox-img>
+
 ####Kaj lahko naredim, če me skrbi, da sem se okužil/a? 
 Ob pojavu simptomov in znakov okužbe ali če je prisotno kakršnokoli tveganje za okužbo, poišči pomoč pri izbranem osebnem zdravniku, ki te bo napotil k ustreznemu specialistu.
 

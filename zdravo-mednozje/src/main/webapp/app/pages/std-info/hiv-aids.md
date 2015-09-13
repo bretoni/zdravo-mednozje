@@ -1,4 +1,4 @@
-###HIV/AIDS
+###HIV/aids
 ####Kaj je to?
 HIV ali virus humane imunske pomanjkljivosti postopoma uničuje imunski sistem okuženega. Ko napredujoča okužba povzroči hujše okvare imunskega odzivanja okuženega, napreduje v sindrom pridobljene imunske pomanjkljivosti (aids), ki se konča s smrtjo. Aids opredeljujejo določene priložnostne (oportunistične) okužbe, določene rakave bolezni in bolezni, ki jih neposredno povzroča sam virus.
 
@@ -23,7 +23,7 @@ Ob pojavu simptomov in znakov okužbe ali če je prisotno kakršnokoli tveganje 
 Zdravila, ki jih imamo danes na voljo, bolnika s HIV/aidsom ne morejo pozdraviti, ampak mu omogočajo kvalitetno življenje s kronično boleznijo. Zdravila namreč zaustavijo napredovanje bolezni in imunskemu sistemu omogočijo, da se obnovi. Ob doslednem upoštevanju vseh navodil zdravljenja je danes pričakovana življenjska doba bolnikov s HIV/aidsom podobna pričakovani življenjski dobi v splošni populaciji.
 
 ####Kaj pa, če ne grem k zdravniku?
-Povprečno preživetje po diagnozi okužbe s HIV brez zdravljenja je od 10 do12 let. Bolnik praviloma ne umre zaradi same okužbe s HIV ampak zaradi priložnostnih okužb in rakavih obolenj, ki so posledica nezmožnosti celic imunskega sistema, da bi zagotovile učinkovito obrambo telesa pred mikrobi, ki ljudem z dobro delujočim imunskim sistemom ponavadi ne povzročajo težav.
+Povprečno preživetje po diagnozi okužbe s HIV brez zdravljenja je od 10 do 12 let. Bolnik praviloma ne umre zaradi same okužbe s HIV ampak zaradi priložnostnih okužb in rakavih obolenj, ki so posledica nezmožnosti celic imunskega sistema, da bi zagotovile učinkovito obrambo telesa pred mikrobi, ki ljudem z dobro delujočim imunskim sistemom ponavadi ne povzročajo težav.
 
 ####Kako preprečim okužbo?
 Zveza z enim samim neokuženim zvestim partnerjem ali redna, dosledna in pravilna uporaba kondoma sta najboljša zaščita. Kondom je potrebno uporabljati vse od začetka do konca spolnega odnosa (vaginalnega, oralnega in/ali analnega).

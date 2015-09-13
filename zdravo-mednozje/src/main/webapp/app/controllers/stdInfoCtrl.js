@@ -50,7 +50,7 @@
 			link: 'hepatitis-c',
 		},
 		{
-			name: 'HIV/AIDS',
+			name: 'HIV/aids',
 			link: 'hiv-aids',
 		}];
 	}]);

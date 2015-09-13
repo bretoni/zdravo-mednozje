@@ -25,4 +25,69 @@ $(document).ready(function () {
 		event.preventDefault();
 		$('body,html').animate({ scrollTop: 0 }, "slow");
 	});
+	
+	if (typeof String.prototype.startsWith != 'function') {
+		// see below for better implementation!
+		String.prototype.startsWith = function (str){
+			return this.indexOf(str) === 0;
+		};
+	}
+	
+	if (typeof String.prototype.endsWith != 'function') {
+		String.prototype.endsWith = function (str){
+			return this.slice(-str.length) == str;
+		};
+	}
+	
+	String.prototype.splice = function( idx, rem, s ) {
+		return (this.slice(0,idx) + s + this.slice(idx + Math.abs(rem)));
+	};
 });
+
+
+function openDialog(img, txt, appropriate) {
+	var allowInappropriateImgs = localStorage.allowInappropriate == null ? false : localStorage.allowInappropriate;
+	
+	// !allowInappropriateImgs && !appropriate
+	if(!appropriate)
+	{
+		$.featherlight("\
+		<span id='display-warning'>																			\
+			<span id='warning-title'>Opozorilo!																\
+				<br /> 																						\
+				<br /> 																						\
+			</span>																							\
+																											\
+			Strinjam se z ogledom nazornega slikovnega gradiva.												\
+			<br /> 																							\
+			<br /> 																							\
+			<br /> 																							\
+																											\
+			<div id='middle'>																				\
+				<button class='btn btn-primary' id='display-btn-disallow'>Ne strinjam se!</button> 			\
+				<button class='btn btn-primary' id='display-btn-allow'>Strinjam se!</button> 				\
+			</div>																							\
+																											\
+			<br /> 																							\
+		</span>																								\
+		<span id='show-image' style='display: none; width: 100%'> 														\
+			<img class='lightbox-img' src='" + img + "' /><p>" + txt + "</p>								\
+		</span> 																							\
+		");
+		
+		var current = $.featherlight.current();
+	
+		$("#display-btn-disallow").click(function() {
+			current.close();
+		});
+		$("#display-btn-allow").click(function() {
+			localStorage.allowInappropriate = true;
+			$("#display-warning").slideToggle(1000);
+			$("#show-image").slideToggle(1000);
+		});
+	}
+	else 
+	{
+		$.featherlight("<img src=" + img + " /><p>" + txt + "</p>");
+	}
+}
