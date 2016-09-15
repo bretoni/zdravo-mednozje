@@ -97,7 +97,7 @@ public class TestRestService {
 		} catch (Exception err) {
 		        try {
 				entityManager.close();
-			} catch (Exception err2);
+			} catch (Exception err2){};
 			err.printStackTrace();
 			returnCode = "{\"status\":\"500\","+
 					"\"message\":\"Resource not created.\""+
